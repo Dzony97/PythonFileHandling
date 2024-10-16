@@ -11,7 +11,7 @@ class DataLoader[T](ABC):
 
 
 class CSVLoader[T](DataLoader):
-    separator = ','
+    separator: str = ', '
 
     def load(self, path: str) -> list[dict[str, T]]:
         with open(path) as csv_file:
@@ -21,3 +21,12 @@ class CSVLoader[T](DataLoader):
                                                                    [component.strip() for component in
                                                                     row['components'].split(self.separator)])
             return reader
+
+
+class JSONLoader[T](DataLoader):
+    key: str = 'cars'
+
+    def load(self, path: str) -> list[dict[str, T]]:
+        with open(path, 'r') as json_file:
+            return json.load(json_file)[self.key]
+
