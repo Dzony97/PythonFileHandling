@@ -3,17 +3,20 @@ import json
 import csv
 
 
+type Data[T] = list[dict[str, ...]]
+
+
 class DataLoader[T](ABC):
 
     @abstractmethod
-    def load(self, path: str) -> list[dict[str, T]]:
+    def load(self, path: str) -> Data[T]:
         pass
 
 
 class CsvDataLoader[T](DataLoader):
     separator: str = ','
 
-    def load(self, path: str) -> list[dict[str, T]]:
+    def load(self, path: str) -> Data[T]:
         with open(path) as csv_file:
             reader = [{key: val for key, val in row.items()} for row in csv.DictReader(csv_file)]
             for row in reader:
@@ -26,7 +29,7 @@ class CsvDataLoader[T](DataLoader):
 class JsonDataLoader[T](DataLoader):
     key: str = 'cars'
 
-    def load(self, path: str) -> list[dict[str, T]]:
+    def load(self, path: str) -> Data[T]:
         with open(path, 'r') as json_file:
             return json.load(json_file)[self.key]
 
@@ -34,7 +37,7 @@ class JsonDataLoader[T](DataLoader):
 class TxtDataLoader[T](DataLoader):
     separator: str = ', '
 
-    def load(self, path: str) -> list[dict[str, T]]:
+    def load(self, path: str) -> Data[T]:
         cars = []
         with open(path, 'r') as txt_file:
             for line in txt_file:
