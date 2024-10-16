@@ -10,7 +10,7 @@ class DataLoader[T](ABC):
         pass
 
 
-class CSVLoader[T](DataLoader):
+class CsvDataLoader[T](DataLoader):
     separator: str = ', '
 
     def load(self, path: str) -> list[dict[str, T]]:
@@ -23,10 +23,11 @@ class CSVLoader[T](DataLoader):
             return reader
 
 
-class JSONLoader[T](DataLoader):
+class JsonDataLoader[T](DataLoader):
     key: str = 'cars'
 
     def load(self, path: str) -> list[dict[str, T]]:
         with open(path, 'r') as json_file:
             return json.load(json_file)[self.key]
+
 
