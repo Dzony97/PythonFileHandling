@@ -1,20 +1,18 @@
 from abc import ABC, abstractmethod
 import json
 import csv
-from typing import TypeVar
 
-T = TypeVar('T')
-Data = list[dict[str, T]]
+type Data[T] = list[dict[str, T]]
 
 
-class DataLoader[T](ABC):
+class DataLoader(ABC):
 
     @abstractmethod
     def load(self, path: str) -> Data:
         pass
 
 
-class CsvDataLoader[T](DataLoader):
+class CsvDataLoader(DataLoader):
     separator: str = ','
 
     def load(self, path: str) -> Data:
@@ -27,7 +25,7 @@ class CsvDataLoader[T](DataLoader):
             return reader
 
 
-class JsonDataLoader[T](DataLoader):
+class JsonDataLoader(DataLoader):
     key: str = 'cars'
 
     def load(self, path: str) -> Data:
@@ -35,7 +33,7 @@ class JsonDataLoader[T](DataLoader):
             return json.load(json_file)[self.key]
 
 
-class TxtDataLoader[T](DataLoader):
+class TxtDataLoader(DataLoader):
     separator: str = ', '
 
     def load(self, path: str) -> Data:
