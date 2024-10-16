@@ -32,3 +32,11 @@ class CarStringElementValidator(Validator):
     def validate(self, data: Data) -> Data:
         return [car for car in data if isinstance(car[self.component], str)
                 and self.min_length < len(car[self.component]) < self.max_length]
+
+
+@dataclass
+class CarComponentsElementValidator(Validator):
+
+    def validate(self, data: Data) -> Data:
+        return [car for car in data if isinstance(car["components"], list) and
+                all(isinstance(component, str) for component in car["components"])]
