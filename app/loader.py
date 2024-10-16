@@ -11,7 +11,7 @@ class DataLoader[T](ABC):
 
 
 class CsvDataLoader[T](DataLoader):
-    separator: str = ', '
+    separator: str = ','
 
     def load(self, path: str) -> list[dict[str, T]]:
         with open(path) as csv_file:
@@ -31,3 +31,20 @@ class JsonDataLoader[T](DataLoader):
             return json.load(json_file)[self.key]
 
 
+class TxtDataLoader[T](DataLoader):
+    separator: str = ', '
+
+    def load(self, path: str) -> list[dict[str, T]]:
+        cars = []
+        with open(path, 'r') as txt_file:
+            for line in txt_file:
+                component = line.strip().split(self.separator)
+                cars_elements = {
+                    'model': component[0],
+                    'price': int(component[1]),
+                    'color': component[2],
+                    'mileage': int(component[3]),
+                    'components': component[4:]
+                }
+                cars.append(cars_elements)
+            return cars
