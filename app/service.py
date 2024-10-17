@@ -12,3 +12,13 @@ class CarService[T]:
             raise ValueError('Invalid attribute')
         cars = self.car_repository.get_data()
         return [getattr(car, attribute) for car in cars]
+
+    def get_highest_value(self, attribute: str) -> float:
+        if not attribute in {'price', 'mileage'}:
+            raise ValueError('Attribute must be "price" or "mileage"')
+        return max(self.get_attributes(attribute))
+
+    def get_smallest_value(self, attribute: str) -> float:
+        if not attribute in {'price', 'mileage'}:
+            raise ValueError('Attribute must be "price" or "mileage"')
+        return min(self.get_attributes(attribute))
