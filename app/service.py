@@ -27,3 +27,9 @@ class CarService[T]:
         if not attribute in {'price', 'mileage'}:
             raise ValueError('Attribute must be "price" or "mileage"')
         return sum(self.get_attributes(attribute)) / len(self.car_repository.get_data())
+
+    def sorted_data_ascending_or_descending(self, attribute: str, reverse=True) -> list[Car]:
+        return sorted(self.car_repository.get_data(), key=lambda car: car.get_attribute(attribute), reverse=reverse)
+
+    def filter_data_by_mileage(self, min_mileage: int) -> list[Car]:
+        return list(filter(lambda car: car.has_mileage_greater_than(min_mileage), self.car_repository.get_data()))
