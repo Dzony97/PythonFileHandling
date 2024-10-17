@@ -9,7 +9,7 @@ def main() -> None:
     txt_data = TxtDataLoader()
     converter = ConvertDataToListCars()
     validator = CarNumberElementValidator()
-    print(txt_data.load('data/data.txt'))
+    print(json_data.load('data/data.json'))
 
 
 if __name__ == '__main__':
