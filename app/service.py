@@ -1,7 +1,7 @@
 from app.model import Car
 from dataclasses import dataclass
 from app.repository import AbstractCarRepository
-
+from collections import Counter
 
 @dataclass
 class CarService[T]:
@@ -33,3 +33,11 @@ class CarService[T]:
 
     def filter_data_by_mileage(self, min_mileage: int) -> list[Car]:
         return list(filter(lambda car: car.has_mileage_greater_than(min_mileage), self.car_repository.get_data()))
+
+    def count_cars_by_color(self) -> dict[str, int]:
+        count_colors = Counter([car.get_attribute('color') for car in self.car_repository.get_data()])
+        return dict(count_colors.most_common())
+
+    def the_most_expensive_models(self) -> dict[str, str]:
+        return {car.get_attribute('model'): car.get_attribute('price') for car in self.car_repository.get_data() if
+                car.get_attribute('price') == self.get_highest_value('price')}
