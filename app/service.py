@@ -1,7 +1,7 @@
 from app.model import Car
 from dataclasses import dataclass
 from app.repository import AbstractCarRepository
-from collections import Counter
+from collections import Counter, defaultdict
 
 @dataclass
 class CarService[T]:
@@ -49,3 +49,15 @@ class CarService[T]:
 
     def sort_car_components(self) -> list[Car]:
         return [car for car in self.car_repository.get_data() if getattr(car, 'components').sort() is None]
+
+    def component_in_car(self) -> dict[str, list[str]]:
+        components_map = defaultdict(list)
+        for car in self.car_repository.get_data():
+            for component in getattr(car, 'components'):
+                components_map[component].append(car.get_attribute('model'))
+        return dict(sorted(components_map.items(), key=lambda item: len(item[1]), reverse=True))
+
+    def cars_in_range(self, attribute: str, min_range: float, max_range: float) -> list[Car]:
+        if not attribute in {'price', 'mileage'}:
+            raise ValueError('Attribute must be "price" or "mileage"')
+        return [car for car in self.car_repository.get_data() if min_range < getattr(car, attribute) < max_range]
