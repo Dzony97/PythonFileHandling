@@ -41,3 +41,11 @@ class CarService[T]:
     def the_most_expensive_models(self) -> dict[str, str]:
         return {car.get_attribute('model'): car.get_attribute('price') for car in self.car_repository.get_data() if
                 car.get_attribute('price') == self.get_highest_value('price')}
+
+    def cars_statistics(self, attribute: str) -> str:
+        return (f'The highest {attribute}: {self.get_highest_value(attribute)},'
+                f' the lowest {attribute}: {self.get_smallest_value(attribute)},'
+                f' the average {attribute}: {self.average_calculate(attribute)}.')
+
+    def sort_car_components(self) -> list[Car]:
+        return [car for car in self.car_repository.get_data() if getattr(car, 'components').sort() is None]
