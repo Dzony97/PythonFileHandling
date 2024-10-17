@@ -3,9 +3,13 @@ from dataclasses import dataclass
 from app.repository import AbstractCarRepository
 from collections import Counter, defaultdict
 
+
 @dataclass
 class CarService[T]:
     car_repository: AbstractCarRepository
+
+    def __call__(self):
+        return self
 
     def get_attributes(self, attribute: str) -> list[T]:
         if attribute not in {'price', 'mileage', 'color', 'model', 'components', 'id'}:
