@@ -22,3 +22,8 @@ class CarService[T]:
         if not attribute in {'price', 'mileage'}:
             raise ValueError('Attribute must be "price" or "mileage"')
         return min(self.get_attributes(attribute))
+
+    def average_calculate(self, attribute: str) -> float:
+        if not attribute in {'price', 'mileage'}:
+            raise ValueError('Attribute must be "price" or "mileage"')
+        return sum(self.get_attributes(attribute)) / len(self.car_repository.get_data())
