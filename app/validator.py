@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from typing import override
 
 type Data[T] = list[dict[str, T]]
 
@@ -16,6 +17,7 @@ class CarNumberElementValidator(Validator):
     max_range: float = float('inf')
     component: str = "price"
 
+    @override
     def validate(self, data: Data) -> Data:
         return [car for car in data if isinstance(car[self.component], int)
                 and self.min_range < car[self.component] < self.max_range]
@@ -27,6 +29,7 @@ class CarStringElementValidator(Validator):
     max_length: int = 30
     component: str = "model"
 
+    @override
     def validate(self, data: Data) -> Data:
         return [car for car in data if isinstance(car[self.component], str)
                 and self.min_length < len(car[self.component]) < self.max_length]
@@ -35,6 +38,7 @@ class CarStringElementValidator(Validator):
 @dataclass
 class CarComponentsElementValidator(Validator):
 
+    @override
     def validate(self, data: Data) -> Data:
         return [car for car in data if isinstance(car["components"], list) and
                 all(isinstance(component, str) for component in car["components"])]

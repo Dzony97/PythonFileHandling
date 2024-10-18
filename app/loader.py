@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import json
 import csv
+from typing import override
 
 type Data[T] = list[dict[str, T]]
 
@@ -15,6 +16,7 @@ class DataLoader(ABC):
 class CsvDataLoader(DataLoader):
     separator: str = ','
 
+    @override
     def load(self, path: str) -> Data:
         with open(path) as csv_file:
             reader = [{key: val for key, val in row.items()} for row in csv.DictReader(csv_file)]
@@ -28,6 +30,7 @@ class CsvDataLoader(DataLoader):
 class JsonDataLoader(DataLoader):
     key: str = 'cars'
 
+    @override
     def load(self, path: str) -> Data:
         with open(path, 'r') as json_file:
             return json.load(json_file)[self.key]
@@ -36,6 +39,7 @@ class JsonDataLoader(DataLoader):
 class TxtDataLoader(DataLoader):
     separator: str = ', '
 
+    @override
     def load(self, path: str) -> Data:
         cars = []
         with open(path, 'r') as txt_file:

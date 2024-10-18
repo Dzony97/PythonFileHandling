@@ -1,15 +1,16 @@
-from app.model import Car
-from app.loader import JsonDataLoader, CsvDataLoader, TxtDataLoader
+from app.loader import JsonDataLoader
 from app.converter import ConvertDataToListCars
 from app.validator import CarNumberElementValidator
+from app.repository import CarRepository
 
 
 def main() -> None:
     json_data = JsonDataLoader()
-    txt_data = TxtDataLoader()
     converter = ConvertDataToListCars()
     validator = CarNumberElementValidator()
-    print(json_data.load('data/data.json'))
+    repository = CarRepository(json_data, converter, validator)
+    cars_from_json = repository.load_data('data/data.json')
+    print(cars_from_json)
 
 
 if __name__ == '__main__':

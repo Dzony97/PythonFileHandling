@@ -10,12 +10,11 @@ class Car:
     components: list[str]
 
     def __str__(self):
-        components_str = ', '.join(self.components)
         return (f'Model: {self.model}\n'
                 f'Color: {self.color}\n'
                 f'Price: ${self.price:,.2f}\n'
                 f'Mileage: {self.mileage} km\n'
-                f'Components: {components_str if components_str else "None"}')
+                f'Components: {', '.join(self.components) if self.components else ''}')
 
     def has_mileage_greater_than(self, min_value: int) -> bool:
         if 0 >= self.mileage or 0 >= min_value:
