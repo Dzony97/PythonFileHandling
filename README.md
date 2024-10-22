@@ -35,7 +35,7 @@ Once the virtual environment is activated and Python is installed, you can run t
 #### **Windows**
 
 ```
-python run pipenv main.py
+pipenv run python main.py
 ```
 
 
