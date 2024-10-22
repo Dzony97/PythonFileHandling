@@ -18,24 +18,15 @@ Download the latest version of Python from the [official Python website](https:/
 ### Set Up a Virtual Environment
 After installing Python, it is recommended to create a virtual environment for your project.
 
-Windows
 Open Command Prompt or PowerShell.
 Navigate to your project directory.
 Run the following commands:
 ```bash
 pip install pipenv
 pipenv shell
+pipenv install
 ```
 
-Linux & macOS
-Open a terminal.
-Navigate to your project directory.
-Run the following commands
-
-```
-python3 -m venv venv
-source venv/bin/activate
-```
 
 ### 3. Run `main.py`
 
@@ -44,13 +35,9 @@ Once the virtual environment is activated and Python is installed, you can run t
 #### **Windows**
 
 ```
-python main.py
+python run pipenv main.py
 ```
 
-#### **Linux&macOS**
 
-```
-python3 main.py
-```
 
 
