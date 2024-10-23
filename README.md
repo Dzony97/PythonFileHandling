@@ -32,7 +32,6 @@ pipenv install
 
 Once the virtual environment is activated and Python is installed, you can run the `main.py` file.
 
-#### **Windows**
 
 ```
 pipenv run python main.py
