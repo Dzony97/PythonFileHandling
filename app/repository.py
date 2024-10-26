@@ -15,7 +15,7 @@ class AbstractRepository[T](ABC):
     """
 
     @abstractmethod
-    def load_data(self, filename: str) -> list[Car]:
+    def load_data(self, filename: str) -> list[T]:
         """
         Load car data from the specified file.
 
@@ -25,7 +25,7 @@ class AbstractRepository[T](ABC):
         pass
 
     @abstractmethod
-    def get_data(self) -> list[Car]:
+    def get_data(self) -> list[T]:
         """
         Retrieve the loaded car data.
 

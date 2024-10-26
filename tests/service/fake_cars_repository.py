@@ -1,6 +1,6 @@
 from app.model import Car
 from app.service import CarService
-from app.repository import AbstractRepository
+from app.repository import AbstractRepository, CarRepository
 from dataclasses import dataclass, field
 from typing import override
 import pytest
@@ -8,21 +8,25 @@ from ..fake_objects import audi_car, bmw_car, mazda_car
 
 
 @dataclass
-class FakeCarRepository(AbstractRepository):
+class FakeCarRepository(CarRepository):
+
+    def __init__(self, cars: list[Car]):
+        self._cars = cars if cars else []
+
     """
     A fake implementation of the AbstractCarRepository for testing purposes.
 
     This class provides a way to mock car data without relying on actual file I/O.
     It allows the tests to use predefined car objects.
     """
-    _cars: list[Car] = field(default_factory=list)
+
 
     @override
-    def load_data(self, filename: str):
+    def load_data(self, filename: str) -> list[Car]:
         """
         This method is intentionally left unimplemented as it is not needed for the tests.
         """
-        pass
+        return self._cars
 
     @override
     def get_data(self) -> list[Car]:

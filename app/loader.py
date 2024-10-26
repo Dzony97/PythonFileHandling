@@ -2,8 +2,7 @@ from abc import ABC, abstractmethod
 import json
 import csv
 from typing import override
-
-type Data[T] = list[dict[str, T]]
+from app.converter import Data
 
 
 class DataLoader(ABC):

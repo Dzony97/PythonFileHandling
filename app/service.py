@@ -2,9 +2,7 @@ from app.model import Car
 from dataclasses import dataclass
 from app.repository import CarRepository
 from collections import Counter, defaultdict
-
-type CarItem = float | str | list[str]
-
+from typing import Any
 
 @dataclass
 class CarService:
@@ -25,7 +23,7 @@ class CarService:
         """
         return self
 
-    def get_attributes(self, attribute: str) -> CarItem:
+    def get_attributes(self, attribute: str) -> list[Any]:
         """
         Retrieve a list of values for a specified attribute from the car data.
 

@@ -16,7 +16,7 @@ class Car:
     model: str
     price: float
     color: str
-    mileage: int
+    mileage: float
     components: list[str]
 
     def __str__(self):
