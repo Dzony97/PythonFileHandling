@@ -9,13 +9,13 @@ from app.validator import Validator
 
 
 @dataclass
-class AbstractCarRepository(ABC):
+class AbstractRepository[T](ABC):
     """
     Abstract base class for car repositories, defining the interface for loading and retrieving car data.
     """
 
     @abstractmethod
-    def load_data(self, filename: str):
+    def load_data(self, filename: str) -> list[Car]:
         """
         Load car data from the specified file.
 
@@ -35,7 +35,7 @@ class AbstractCarRepository(ABC):
 
 
 @dataclass
-class CarRepository(AbstractCarRepository):
+class CarRepository(AbstractRepository):
     """
     A repository for loading, validating, and converting car data into a list of Car objects.
 

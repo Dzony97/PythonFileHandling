@@ -1,11 +1,13 @@
 from app.model import Car
 from dataclasses import dataclass
-from app.repository import AbstractCarRepository
+from app.repository import CarRepository
 from collections import Counter, defaultdict
+
+type CarItem = float | str | list[str]
 
 
 @dataclass
-class CarService[T]:
+class CarService:
     """
     A service class that provides various operations on car data, such as fetching attributes, sorting, filtering,
     and calculating statistics.
@@ -13,7 +15,7 @@ class CarService[T]:
     :param car_repository: An instance of AbstractCarRepository used to retrieve car data.
     """
 
-    car_repository: AbstractCarRepository
+    car_repository: CarRepository
 
     def __call__(self):
         """
@@ -23,7 +25,7 @@ class CarService[T]:
         """
         return self
 
-    def get_attributes(self, attribute: str) -> list[T]:
+    def get_attributes(self, attribute: str) -> CarItem:
         """
         Retrieve a list of values for a specified attribute from the car data.
 

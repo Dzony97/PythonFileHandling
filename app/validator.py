@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import override
+from app.service import CarItem
 
-type Data[T] = list[dict[str, T]]
+type Data = list[dict[str, CarItem]]
 
 
 class Validator(ABC):

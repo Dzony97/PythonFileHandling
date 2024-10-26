@@ -1,6 +1,6 @@
 from app.model import Car
 from app.service import CarService
-from app.repository import AbstractCarRepository
+from app.repository import AbstractRepository
 from dataclasses import dataclass, field
 from typing import override
 import pytest
@@ -8,7 +8,7 @@ from ..fake_objects import audi_car, bmw_car, mazda_car
 
 
 @dataclass
-class FakeCarRepository(AbstractCarRepository):
+class FakeCarRepository(AbstractRepository):
     """
     A fake implementation of the AbstractCarRepository for testing purposes.
 
