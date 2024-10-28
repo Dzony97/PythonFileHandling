@@ -1,6 +1,6 @@
 # PythonFileHandling
 ![Python 3.13 Badge](https://img.shields.io/badge/python-3.13-blue?logo=python&logoColor=white&labelColor=black) 
-![Coverage](https://img.shields.io/badge/coverage-93%25-brightgreen) 
+[![Coverage](https://img.shields.io/badge/coverage-93%25-brightgreen)](https://dzony97.github.io/PythonFileHandling/htmlcov/index.html)
 ![Type Checking](https://img.shields.io/badge/type_check-mypy-blue) 
 
 ## Description
