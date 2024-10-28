@@ -1,4 +1,7 @@
 # PythonFileHandling
+![Python 3.13 Badge](https://img.shields.io/badge/python-3.13-blue?logo=python&logoColor=white&labelColor=black) 
+![Coverage](https://img.shields.io/badge/coverage-93%25-brightgreen) 
+![Type Checking](https://img.shields.io/badge/type_check-mypy-blue) 
 
 ## Description
 A straightforward application that converts data from JSON, CSV, and TXT files into Python class objects.
