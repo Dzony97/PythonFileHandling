@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 
 [dev-packages]
-pyright = '*'
+mypy = '*'
 pytest = '*'
 pytest-cov = "*"
 

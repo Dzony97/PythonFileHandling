@@ -2,7 +2,8 @@ from abc import ABC, abstractmethod
 import json
 import csv
 from typing import override
-from app.converter import Data
+
+CarData = list[dict[str, ...]]
 
 
 class DataLoader(ABC):
@@ -14,7 +15,7 @@ class DataLoader(ABC):
     """
 
     @abstractmethod
-    def load(self, path: str) -> Data:
+    def load(self, path: str) -> CarData:
         """
         Load data from a file.
 
@@ -36,7 +37,7 @@ class CsvDataLoader(DataLoader):
     separator: str = ','
 
     @override
-    def load(self, path: str) -> Data:
+    def load(self, path: str) -> CarData:
         """
         Load and parse car data from a CSV file.
 
@@ -66,7 +67,7 @@ class JsonDataLoader(DataLoader):
     key: str = 'cars'
 
     @override
-    def load(self, path: str) -> Data:
+    def load(self, path: str) -> CarData:
         """
         Load and parse car data from a JSON file.
 
@@ -89,7 +90,7 @@ class TxtDataLoader(DataLoader):
     separator: str = ', '
 
     @override
-    def load(self, path: str) -> Data:
+    def load(self, path: str) -> CarData:
         """
         Load and parse car data from a text file.
 

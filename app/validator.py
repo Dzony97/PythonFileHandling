@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import override
-from app.converter import Data
+from app.loader import CarData
 
 
 class Validator(ABC):
@@ -10,7 +10,7 @@ class Validator(ABC):
     """
 
     @abstractmethod
-    def validate(self, data: Data) -> Data:
+    def validate(self, data: CarData) -> CarData:
         """
         Validate car data based on specific criteria.
 
@@ -35,7 +35,7 @@ class CarNumberElementValidator(Validator):
     component: str = "price"
 
     @override
-    def validate(self, data: Data) -> Data:
+    def validate(self, data: CarData) -> CarData:
         """
         Validate that the numeric component is within the specified range.
 
@@ -61,7 +61,7 @@ class CarStringElementValidator(Validator):
     component: str = "model"
 
     @override
-    def validate(self, data: Data) -> Data:
+    def validate(self, data: CarData) -> CarData:
         """
         Validate that the string component's length is within the specified range.
 
@@ -81,7 +81,7 @@ class CarComponentsElementValidator(Validator):
     """
 
     @override
-    def validate(self, data: Data) -> Data:
+    def validate(self, data: CarData) -> CarData:
         """
         Validate that the 'components' field is a list of strings.
 

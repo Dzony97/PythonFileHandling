@@ -2,7 +2,7 @@ from app.model import Car
 from dataclasses import dataclass
 from app.repository import CarRepository
 from collections import Counter, defaultdict
-from typing import Any
+
 
 @dataclass
 class CarService:
@@ -23,7 +23,7 @@ class CarService:
         """
         return self
 
-    def get_attributes(self, attribute: str) -> list[Any]:
+    def get_float_attributes(self, attribute: str) -> list[float]:
         """
         Retrieve a list of values for a specified attribute from the car data.
 
@@ -31,7 +31,7 @@ class CarService:
         :return: A list of values corresponding to the specified attribute from all cars.
         :raises ValueError: If the attribute is invalid.
         """
-        if attribute not in {'price', 'mileage', 'color', 'model', 'components', 'id'}:
+        if attribute not in {'price', 'mileage'}:
             raise ValueError('Invalid attribute')
         cars = self.car_repository.get_data()
         return [getattr(car, attribute) for car in cars]
@@ -46,7 +46,7 @@ class CarService:
         """
         if not attribute in {'price', 'mileage'}:
             raise ValueError('Attribute must be "price" or "mileage"')
-        return max(self.get_attributes(attribute))
+        return max(self.get_float_attributes(attribute))
 
     def get_smallest_value(self, attribute: str) -> float:
         """
@@ -58,7 +58,7 @@ class CarService:
         """
         if not attribute in {'price', 'mileage'}:
             raise ValueError('Attribute must be "price" or "mileage"')
-        return min(self.get_attributes(attribute))
+        return min(self.get_float_attributes(attribute))
 
     def average_calculate(self, attribute: str) -> float:
         """
@@ -70,7 +70,7 @@ class CarService:
         """
         if not attribute in {'price', 'mileage'}:
             raise ValueError('Attribute must be "price" or "mileage"')
-        return sum(self.get_attributes(attribute)) / len(self.car_repository.get_data())
+        return sum(self.get_float_attributes(attribute)) / len(self.car_repository.get_data())
 
     def sorted_data_ascending_or_descending(self, attribute: str, reverse=True) -> list[Car]:
         """

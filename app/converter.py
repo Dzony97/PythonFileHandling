@@ -2,7 +2,7 @@ from app.model import Car
 from abc import ABC, abstractmethod
 from typing import override
 
-type Data[T] = list[dict[str, T]]
+from app.loader import CarData
 
 
 class Converter(ABC):
@@ -14,7 +14,7 @@ class Converter(ABC):
     """
 
     @abstractmethod
-    def convert(self, data: Data) -> list[Car]:
+    def convert(self, data: CarData) -> list[Car]:
         """
         Convert data into a list of Car objects.
 
@@ -33,7 +33,7 @@ class ConvertDataToListCars(Converter):
     """
 
     @override
-    def convert(self, data: Data) -> list[Car]:
+    def convert(self, data: CarData) -> list[Car]:
         """
         Convert a list of dictionaries into a list of Car objects.
 

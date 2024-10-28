@@ -1,7 +1,7 @@
 from app.model import Car
 from app.service import CarService
-from app.repository import AbstractRepository, CarRepository
-from dataclasses import dataclass, field
+from app.repository import CarRepository
+from dataclasses import dataclass
 from typing import override
 import pytest
 from ..fake_objects import audi_car, bmw_car, mazda_car
